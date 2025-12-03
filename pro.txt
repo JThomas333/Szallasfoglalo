@@ -1,0 +1,16 @@
+7. Szállásfoglaló rendszer
+Végpontok:
+GET /api/hotels
+GET /api/hotels/:id
+POST /api/bookings
+GET /api/bookings
+
+Táblák:
+users(id, name, email, password_hash)
+hotels(id, name, location, price_per_night)
+bookings(id, user_id, hotel_id, check_in, check_out)
+
+Frontend:
+Kereső (hely, dátum alapján)
+Foglalás oldal
+Login / Register oldal
