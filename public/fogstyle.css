@@ -1,0 +1,61 @@
+/* Oldal alap stílusok */
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Címsor */
+h1 {
+    text-align: center;
+    color: #2a4d8f;
+    margin-bottom: 20px;
+}
+
+/* Hotel infó doboz */
+#hotelInfo {
+    max-width: 500px;
+    margin: 0 auto 25px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Gombok */
+#bookingActions button {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 15px auto;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: #2a7ae4;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#bookingActions button:hover {
+    background: #1d5bb8;
+}
+
+/* Vissza link */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #2a4d8f;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

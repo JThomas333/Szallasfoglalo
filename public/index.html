@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotelek</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Szállásfoglaló - Keresés</title>
+    <link rel="stylesheet" href="indstyle.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Hotelek</h1>
+<button id="logoutBtn">Kijelentkezés</button>
     <form id="kereses" onsubmit="keresesfug(event)">
         <p>Hely: <input type="text" id="location"></p>
         <p>Érkezés: <input type="date" id="check_in"></p>
         <p>Távozás: <input type="date" id="check_out"></p>
         <button type="submit">Keresés</button>
     </form>
-    <div id="talalatok">
 
+    <div id="talalatok"></div>
+
+    <div id="sajatFoglalasokListContainer">
+        <h3>Saját foglalásaim</h3>
+        <div id="sajatFoglalasokList"></div>
+        <button onclick="frissitesLenyitas()">Frissítés / Lenyitás</button>
+        <button onclick="osszehajt()">Bezárás</button>
     </div>
 </body>
 </html>

@@ -24,6 +24,28 @@ app.get('/hotels/:id', (req, res) => {
     res.status(200).json(hotel)
 })
 
+app.post('/hotels', (req, res) => {
+    
+    const { location, check_in, check_out } = req.body;
+    if (!location || !check_in || !check_out) {
+        return res.status(400).json("Missing data");
+    }
+    //a helyen összes hotel 
+    const hotels = db.getHotelByLocation(location);
+
+    //szűrés
+    const availableHotels = hotels.filter(hotel => {
+        const bookings = db.getBookingsByHotelId(hotel.id);
+    //nincs hiba foglalásokkal
+        return bookings.every(b => check_out <= b.check_in || check_in >= b.check_out);
+    });
+
+    res.status(200).json(availableHotels);
+    
+});
+
+
+
   
 
 app.post('/bookings', (req, res) =>{
@@ -31,8 +53,14 @@ app.post('/bookings', (req, res) =>{
     if (!user_id || !hotel_id || !check_in || !check_out) {
         return res.status(400).json("Missing data");
     }
+    const inDate = new Date(check_in);
+    const outDate = new Date(check_out);
+    if (inDate > outDate) {
+        return res.status(400).json({ message: "A foglalás kezdete nem lehet későbbi, mint a vége!" });
+    }
+
     const result = db.saveBooking(user_id, hotel_id, check_in, check_out);
-    const booking = db.getBookings().find(b => b.id === result.lastInsertRowid);
+    const booking = db.getBookings(result.lastInsertRowid);
     res.status(201).json(booking);
 })
   
@@ -41,6 +69,7 @@ app.get('/bookings', (req, res) => {
     const bookings = db.getBookings()
     res.status(200).json(bookings)
 })
+
 //log 
 
 app.get('/users/:id', (req,res) =>{
@@ -92,3 +121,20 @@ app.use((err, req, res, next) =>{
 app.listen(PORT, () =>{
     console.log("Fut a szerver a " + PORT + "-on")
 })
+// Felhasználó saját foglalásainak lekérése
+app.get('/bookings/user/:user_id', (req, res) => {
+    const user_id = +req.params.user_id;
+    const bookings = db.getBookingsByUserId(user_id);
+    const detailedBookings = bookings.map(b => {
+        const hotel = db.getHotelById(b.hotel_id);
+        return {
+            id: b.id,
+            hotel_name: hotel.name,
+            location: hotel.location,
+            check_in: b.check_in,
+            check_out: b.check_out,
+            price_per_night: hotel.price_per_night
+        };
+    });
+    res.json(detailedBookings);
+});

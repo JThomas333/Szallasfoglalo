@@ -1,0 +1,248 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 25px;
+    color: #003580;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 20px;
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 900px;
+    border: 2px solid #febb02;
+}
+
+form h3 {
+    display: none; 
+}
+
+form p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #003580;
+    font-weight: bold;
+    flex: 1;
+}
+
+input {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #b8c3d9;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+
+input:focus {
+    border-color: #003580;
+    outline: none;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0071c2;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+#talalatok {
+    margin-top: 30px;
+    width: 90%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hotel-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #d9e3f5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 15px;
+}
+
+.hotel-card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.hotel-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hotel-card h2 {
+    margin: 0;
+    color: #003580;
+    font-size: 20px;
+}
+
+.hotel-card p {
+    margin: 5px 0;
+    color: #444;
+}
+
+.hotel-price {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+.hotel-card button {
+    align-self: flex-start;
+    margin-top: 10px;
+    background: #0071c2;
+}
+
+#talalatok {
+    margin-top: 20px;
+}
+
+.no-results {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hotel {
+    background: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.hotel h3 {
+    margin: 0;
+    color: #003580;
+}
+
+.btn-book {
+    background: #0071c2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.btn-book:hover {
+    background: #005999;
+}
+/* Saját foglalások panel új stílus */
+#sajatFoglalasokListContainer {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    width: 300px;
+    max-height: 70vh;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 2px solid #febb02;
+    overflow-y: auto;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#sajatFoglalasokListContainer h3 {
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    color: #003580;
+    font-weight: bold;
+}
+
+#sajatFoglalasokList {
+    display: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px; /* kis belső tér a scrollhoz */
+}
+
+#sajatFoglalasokListContainer button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0071c2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#sajatFoglalasokListContainer button:hover {
+    background-color: #005fa3;
+}
+#logoutBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff4d4f; /* piros jelzés a kijelentkezéshez */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    z-index: 2000; /* biztosan a panel fölött legyen */
+}
+
+#logoutBtn:hover {
+    background-color: #d9363e;
+    transform: translateY(-2px);
+}
+
