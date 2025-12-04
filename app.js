@@ -24,6 +24,28 @@ app.get('/hotels/:id', (req, res) => {
     res.status(200).json(hotel)
 })
 
+app.post('/hotels', (req, res) => {
+    
+    const { location, check_in, check_out } = req.body;
+    if (!location || !check_in || !check_out) {
+        return res.status(400).json("Missing data");
+    }
+    //a helyen összes hotel 
+    const hotels = db.getHotelByLocation(location);
+
+    //szűrés
+    const availableHotels = hotels.filter(hotel => {
+        const bookings = db.getBookingsByHotelId(hotel.id);
+    //nincs hiba foglalásokkal
+        return bookings.every(b => check_out <= b.check_in || check_in >= b.check_out);
+    });
+
+    res.status(200).json(availableHotels);
+    
+});
+
+
+
   
 
 app.post('/bookings', (req, res) =>{
@@ -32,7 +54,7 @@ app.post('/bookings', (req, res) =>{
         return res.status(400).json("Missing data");
     }
     const result = db.saveBooking(user_id, hotel_id, check_in, check_out);
-    const booking = db.getBookings().find(b => b.id === result.lastInsertRowid);
+    const booking = db.getBookings(result.lastInsertRowid);
     res.status(201).json(booking);
 })
   
@@ -41,6 +63,7 @@ app.get('/bookings', (req, res) => {
     const bookings = db.getBookings()
     res.status(200).json(bookings)
 })
+
 //log 
 
 app.get('/users/:id', (req,res) =>{

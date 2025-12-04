@@ -14,3 +14,8 @@ Frontend:
 Kereső (hely, dátum alapján)
 Foglalás oldal
 Login / Register oldal
+{user_id: user.id, hotel_id: hotelList[0].id, check_in: "2025-11-03", check_out:"2025-11-05"},
+    {user_id: user.id, hotel_id: hotelList[0].id, check_in: "2025-12-11", check_out:"2025-12-13"},
+    {user_id: user.id, hotel_id: hotelList[1].id, check_in: "2025-11-26", check_out:"2025-11-28"},
+    {user_id: user.id, hotel_id: hotelList[2].id, check_in: "2025-12-01", check_out:"2025-12-03"},
+    {user_id: user.id, hotel_id: hotelList[3].id, check_in: "2025-12-05", check_out:"2025-12-07"}

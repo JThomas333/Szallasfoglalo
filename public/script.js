@@ -19,7 +19,8 @@ const keresesfug = async (event) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ location, check_in, check_out })
     });
-    const hotels = await res.json();
+
+    let hotels = await res.json();
 
     talalatok.innerHTML = '';
 
@@ -28,6 +29,9 @@ const keresesfug = async (event) => {
         return;
     }
 
+    console.log('Talált hotelek:', hotels);
+
+
     hotels.forEach(h => {
         const hotel = document.createElement('div')
         hotel.classList.add('hotel')
@@ -35,6 +39,7 @@ const keresesfug = async (event) => {
             <h3>${h.name}</h3>
             <p>Hely: ${h.location}</p>
             <p>Ár: ${h.price_per_night} Ft/éjszaka</p>
+            <p><button class="btn-book" onclick="foglalasMegnyit(${h.id}, '${h.name}', ${h.price_per_night}, '${check_in}', '${check_out}')">Foglalás</button></p>
         `;
         talalatok.appendChild(hotel);
     });
@@ -79,6 +84,7 @@ const belep = async () => {
             return;
         }
         else {
+            localStorage.setItem('user', JSON.stringify(user));
             alert("Sikeres bejelentkezés, " + user.email + "!");
             window.location.href = "index.html";
         }
@@ -130,4 +136,77 @@ const regist = async () => {
     } catch (err) {
         alert(err.message);
     }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sel = JSON.parse(localStorage.getItem('selectedHotel') || 'null');
+    const info = document.getElementById('hotelInfo');
+
+    if (!sel) {
+        info.innerHTML = '<p>Nincs kiválasztott szálloda. Vissza a <a href="index.html">kereséshez</a>.</p>';
+        document.getElementById('bookingActions').style.display = 'none';
+        return;
+    }
+
+    // Hotel adatainak megjelenítése
+    info.innerHTML = `
+        <h2>${sel.name}</h2>
+        <p>Érkezés: ${sel.check_in}</p>
+        <p>Távozás: ${sel.check_out}</p>
+        <p>Ár/éjszaka: ${sel.price_per_night} Ft</p>
+    `;
+});
+
+// Foglalás mentése
+const confirmFoglalas = async () => {
+    const userJs = localStorage.getItem('user');
+    const sel = JSON.parse(localStorage.getItem('selectedHotel') || 'null');
+
+    if (!userJs) {
+        alert('Kérlek lépj be a foglaláshoz.');
+        window.location.href = 'bejelentkezes.html';
+        return;
+    }
+    if (!sel) {
+        alert('Nincs kiválasztott szálloda.');
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const user = JSON.parse(userJs);
+
+    try {
+        const res = await fetch('http://localhost:3000/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: user.id,
+                hotel_id: sel.id,
+                check_in: sel.check_in,
+                check_out: sel.check_out
+            })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Foglalás sikertelen');
+            return;
+        }
+
+        alert('Foglalás sikeres!');
+        localStorage.removeItem('selectedHotel');
+        window.location.href = 'index.html';
+
+    } catch (err) {
+        alert('Hiba: ' + err.message);
+    }
+}
+
+// Hotel kiválasztása a főoldalról
+function foglalasMegnyit(hotelId, hotelName, pricePerNight, checkIn, checkOut) {
+    const sel = { id: hotelId, name: hotelName, price_per_night: pricePerNight, check_in: checkIn, check_out: checkOut };
+    localStorage.setItem('selectedHotel', JSON.stringify(sel));
+    window.location.href = 'foglalas.html';
 }

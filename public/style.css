@@ -1,0 +1,196 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Hotel kártyák stílusa */
+.hotel {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    transition: box-shadow 0.15s, transform 0.08s;
+}
+
+.hotel h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.2rem;
+}
+
+.hotel p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+}
+
+.hotel:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+}
+
+/* Kiválasztott és foglalt állapotú szállások */
+.hotel.selected {
+    outline: 3px solid #ffd54f;
+    background: #fff8e1;
+}
+
+.hotel.booked {
+    outline: 3px solid #007bff;
+    background: #e9f7ef;
+}
+
+/* Keresési űrlap stílusa */
+form#kereses p {
+    margin: 6px 0;
+}
+
+#kereses {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#kereses input,
+#kereses button {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+#kereses button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#kereses button:hover {
+    background-color: #007bff;
+}
+
+/* Keresési eredmények stílusa */
+#talalatok {
+    margin-top: 20px;
+}
+
+#hotelInfo {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#bookingActions button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#bookingActions button:hover {
+    background-color: #007bff;
+}
+
+/* Gombok és linkek stílusa */
+.btn-book {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-book:hover {
+    background: #0056cc;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Foglalás oldalának stílusai */
+#hotelInfo {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gombok a foglalás oldalon */
+#bookingActions button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#bookingActions button:hover {
+    background-color: #0056cc;
+}
+
+/* Visszairányító link */
+a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Extra margók a foglalás oldalának általános rendezéséhez */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header (cím) stílusa */
+h1 {
+    font-size: 2rem;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
