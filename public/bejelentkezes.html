@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bejelentkezés</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <form>
+        <h1>Bejelentkezés</h1>
+
+        <input type="email" id="email" placeholder="E-mail címed">
+        <input type="password" id="pwd" placeholder="Jelszavad">
+
+        <button type="button" onclick="belep()">Belépés</button>
+        <a href="regisztracio.html">Nincs fiókod? Regisztrálj!</a>
+    </form>
 </body>
 </html>

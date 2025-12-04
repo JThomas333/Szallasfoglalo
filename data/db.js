@@ -67,6 +67,6 @@ if (getHotels().length == 0) {
 }
 if (getBookings().length == 0) {
     bookings.forEach(b => {
-        saveHotel(b.user_id, b.hotel_id, b.check_in, b.check_out)
+        saveBooking(b.user_id, b.hotel_id, b.check_in, b.check_out)
     });
 }
